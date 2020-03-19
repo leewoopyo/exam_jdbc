@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!--JDBC template로 DB다루기 -->
+	<!--DB연결에 대한 설정을 여기서 한다 -->
+	<!--jdbc로 연결할 때 메소드로 처리했던 부분이다. -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<!-- jdbc connector를 가져올 때 드라이버 가져오는 부분의 설정 -->
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<!-- 내 아이피와 사용하는 DB를 설정하는 부분 -->
+		<property name="url" value="jdbc:mysql://192.168.56.1:3306/kopo"></property>
+		<!-- 아이디 설정하는 부분 -->
+		<property name="username" value="kopo15"></property>
+		<!-- 비밀번호 설정하는 부분 -->
+		<property name="password" value="Qwer1234!!"></property>	
+	</bean>
+	
+	<!-- jsbc template에 대한 설정을 한다. -->
+	<!-- 위에 id로 설정한 datasource 연결한다는 의미를 가지고 있다. ref="dataSource" -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>	
+		
+</beans>
